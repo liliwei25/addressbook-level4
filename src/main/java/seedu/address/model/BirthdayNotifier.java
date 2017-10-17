@@ -7,15 +7,18 @@ import java.util.List;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.ui.BirthdayPopup;
 
+/**
+ * Checks current date against birthday of all persons
+ */
 public class BirthdayNotifier {
-    LocalDateTime now = LocalDateTime.now();
-    int date = now.getDayOfMonth();
-    int month = now.getMonthValue();
-    ArrayList<String> people = new ArrayList<>();
-
     public BirthdayNotifier(List<ReadOnlyPerson> list) {
-        for(ReadOnlyPerson e: list) {
-            if(e.getDay() == date && e.getMonth() == month) {
+        LocalDateTime now = LocalDateTime.now();
+        int date = now.getDayOfMonth();
+        int month = now.getMonthValue();
+        ArrayList<String> people = new ArrayList<>();
+
+        for (ReadOnlyPerson e: list) {
+            if (e.getDay() == date && e.getMonth() == month) {
                 people.add(e.getName().toString());
             }
         }

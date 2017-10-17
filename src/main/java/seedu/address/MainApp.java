@@ -16,9 +16,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Application;
@@ -47,7 +44,6 @@ import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlAddressBookStorage;
-import seedu.address.ui.BirthdayPopup;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -128,7 +124,7 @@ public class MainApp extends Application {
 
                 if (e.getClickCount() == 2 && !e.isConsumed()) {
                     e.consume();
-                    if(ui.isShowing()) {
+                    if (ui.isShowing()) {
                         Platform.runLater(new Runnable() {
                             @Override public void run() {
                                 ui.hide();

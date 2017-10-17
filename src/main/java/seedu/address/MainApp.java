@@ -35,6 +35,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.BirthdayNotifier;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -46,6 +47,7 @@ import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlAddressBookStorage;
+import seedu.address.ui.BirthdayPopup;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -101,7 +103,7 @@ public class MainApp extends Application {
             System.out.println("SystemTray is not supported");
             return;
         }
-        Image image = Toolkit.getDefaultToolkit().getImage("src/main/resources/images/address_book_32.png");
+        Image image = Toolkit.getDefaultToolkit().getImage("src/main/resources/images/address_book_15.png");
 
         final PopupMenu popup = new PopupMenu();
         final TrayIcon trayIcon = new TrayIcon(image, "PocketBook", popup);
@@ -263,6 +265,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        new BirthdayNotifier(model.getFilteredPersonList());
     }
 
     @Override

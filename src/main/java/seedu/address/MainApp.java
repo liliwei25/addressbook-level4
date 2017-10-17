@@ -110,7 +110,12 @@ public class MainApp extends Application {
         MenuItem exitItem = new MenuItem("Exit");
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(1);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        stop();
+                    }
+                });
             }
         });
 

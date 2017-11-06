@@ -13,7 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Person's birthday in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidBirthday(String[], LocalDate)}
  */
-public class Birthday {
+public class Birthday implements Comparable {
 
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS =
             "Birthdays can only contain numbers, and should be in the format dd-mm-yyyy";
@@ -144,4 +144,9 @@ public class Birthday {
         return year;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Birthday comparedBirthday = (Birthday) o;
+        return this.value.compareTo(comparedBirthday.toString());
+    }
 }

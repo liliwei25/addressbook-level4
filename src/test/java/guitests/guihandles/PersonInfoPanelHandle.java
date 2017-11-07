@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
 /**
  * A handler for the {@code InfoPanel} of the UI.
  */
-public class InfoPanelHandle extends NodeHandle<Node> {
+public class PersonInfoPanelHandle extends NodeHandle<Node> {
     public static final String INFO_PANEL_ID = "#personInfoPanel";
 
     private static final String NAME_FIELD_ID = "#name";
@@ -32,7 +32,7 @@ public class InfoPanelHandle extends NodeHandle<Node> {
     private final List<Label> tagLabels;
 
 
-    public InfoPanelHandle(Node cardNode) {
+    public PersonInfoPanelHandle(Node cardNode) {
         super(cardNode);
 
         this.nameLabel = getChildNode(NAME_FIELD_ID);

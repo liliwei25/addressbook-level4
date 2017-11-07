@@ -10,7 +10,7 @@ import org.junit.rules.TestName;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.CommandBoxHandle;
-import guitests.guihandles.InfoPanelHandle;
+import guitests.guihandles.PersonInfoPanelHandle;
 import guitests.guihandles.MainMenuHandle;
 import guitests.guihandles.MainWindowHandle;
 import guitests.guihandles.PersonListPanelHandle;
@@ -79,7 +79,7 @@ public abstract class AddressBookGuiTest {
         return mainWindowHandle.getMainMenu();
     }
 
-    protected InfoPanelHandle getInfoPanel() {
+    protected PersonInfoPanelHandle getInfoPanel() {
         return mainWindowHandle.getInfoPanel();
     }
 

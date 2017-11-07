@@ -76,7 +76,7 @@ public class Birthday implements Comparable {
      * @param birthday {@code LocalDate} containing input by user
      * @return True when birthday entered by user is before or on current date
      */
-    private static boolean isDateCorrect(LocalDate birthday) {
+    public static boolean isDateCorrect(LocalDate birthday) {
         return birthday.isBefore(LocalDate.now()) || birthday.equals(LocalDate.now());
     }
 

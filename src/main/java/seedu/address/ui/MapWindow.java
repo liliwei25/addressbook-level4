@@ -23,10 +23,10 @@ public class MapWindow extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(MapWindow.class);
     private static final String ICON = "/images/help_icon.png";
     private static final String FXML = "MapWindow.fxml";
+    private static final String MESSAGE_SHOW_MAP = "Showing map window for selected person.";
     public static final String TITLE = "Map";
     public static final String SPACE = " ";
     public static final String PLUS = "+";
-    private static final String MESSAGE_SHOW_MAP = "Showing map window for selected person.";
 
     @FXML
     private WebView map;

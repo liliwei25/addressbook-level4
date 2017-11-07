@@ -23,13 +23,13 @@ public class Birthday implements Comparable {
     private static final String NOT_SET = "Not Set";
     private static final String EMPTY = "";
     private static final String REMOVE = "remove";
-    public static final String MESSAGE_LATE_DATE = "Date given should be before today %1$s";
     private static final int MIN_MONTHS = 1;
     private static final int MAX_MONTHS = 12;
     private static final int MIN_DAYS = 1;
     private static final int DAY_POS = 0;
     private static final int MONTH_POS = 1;
     private static final String DATE_FORMAT = "dd-MM-yyyy";
+    public static final String MESSAGE_LATE_DATE = "Date given should be before today %1$s";
 
     public final String value;
     private final int day;

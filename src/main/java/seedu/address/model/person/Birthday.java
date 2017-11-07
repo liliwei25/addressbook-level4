@@ -18,6 +18,7 @@ public class Birthday implements Comparable {
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS =
             "Birthdays can only contain numbers, and should be in the format dd-mm-yyyy";
     public static final String MESSAGE_WRONG_DATE = "Date entered is wrong";
+    public static final String MESSAGE_LATE_DATE = "Date given should be before today %1$s";
     private static final String DASH = "-";
     private static final int DEFAULT_VALUE = 0;
     private static final String NOT_SET = "Not Set";
@@ -29,7 +30,6 @@ public class Birthday implements Comparable {
     private static final int DAY_POS = 0;
     private static final int MONTH_POS = 1;
     private static final String DATE_FORMAT = "dd-MM-yyyy";
-    public static final String MESSAGE_LATE_DATE = "Date given should be before today %1$s";
 
     public final String value;
     private final int day;

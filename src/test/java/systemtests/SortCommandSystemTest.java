@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.parser.ParserUtil.EMPTY_STRING;
 import static seedu.address.logic.parser.ParserUtil.SPACE_STRING;
 import static seedu.address.testutil.TypicalPersons.AMY;
 

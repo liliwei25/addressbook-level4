@@ -9,15 +9,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_MISSING_PERSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import javafx.collections.ObservableList;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +29,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ModelStub;
 
+import javafx.collections.ObservableList;
+
 //@@author liliwei25
 public class RemoveTagCommandTest {
     private static final String INVALID_TAG = "a";
@@ -43,7 +42,7 @@ public class RemoveTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validTagRemove_Success() throws Exception{
+    public void execute_validTagRemove_success() throws Exception {
         Tag firstTag = model.getAddressBook().getTagList().get(FIRST_TAG);
         RemoveTagCommand removeTagCommand = prepareCommand(firstTag);
 

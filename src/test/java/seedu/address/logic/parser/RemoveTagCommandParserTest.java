@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.Test;
+
 import seedu.address.logic.commands.RemoveTagCommand;
 import seedu.address.model.tag.Tag;
 
@@ -15,7 +16,7 @@ public class RemoveTagCommandParserTest {
     private RemoveTagCommandParser parser = new RemoveTagCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() throws Exception{
+    public void parse_validArgs_returnsDeleteCommand() throws Exception {
         assertParseSuccess(parser, VALID_INPUT, new RemoveTagCommand(new Tag(VALID_INPUT)));
     }
 

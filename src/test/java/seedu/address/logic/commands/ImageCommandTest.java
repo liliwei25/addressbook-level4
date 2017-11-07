@@ -12,12 +12,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import javafx.collections.ObservableList;
-
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.junit.rules.ExpectedException;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -35,12 +33,15 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.ModelStub;
 
+import javafx.collections.ObservableList;
+
 //@@author liliwei25
 public class ImageCommandTest {
+    private static final boolean REMOVE = true;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private static final boolean REMOVE = true;
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -57,7 +58,7 @@ public class ImageCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilterListRemoveImage_Success() throws Exception {
+    public void execute_validIndexFilterListRemoveImage_success() throws Exception {
         ReadOnlyPerson person = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         ImageCommand imageCommand = prepareCommand(INDEX_SECOND_PERSON, REMOVE);
 

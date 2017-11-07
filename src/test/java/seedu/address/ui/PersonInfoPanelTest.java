@@ -5,11 +5,13 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.ui.testutil.GuiTestAssert.assertInfoPanelDisplaysPerson;
 
-import guitests.guihandles.PersonInfoPanelHandle;
 import org.junit.Test;
+
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.testutil.PersonBuilder;
+
+import guitests.guihandles.PersonInfoPanelHandle;
 
 //@@author liliwei25
 public class PersonInfoPanelTest extends GuiUnitTest {

@@ -8,16 +8,18 @@ import static seedu.address.ui.MapWindow.SPACE;
 
 import java.net.URL;
 
-import guitests.guihandles.MapWindowHandle;
-import javafx.stage.Stage;
 import org.junit.Before;
 import org.junit.Test;
 import org.testfx.api.FxToolkit;
 
+import guitests.guihandles.MapWindowHandle;
+
+import javafx.stage.Stage;
+
 //@@author liliwei25
 public class MapWindowTest extends GuiUnitTest {
-    private static String GOOGLE_MAPS_URL_PREFIX = "https://www.google.com.sg/maps/search/";
-    private static String GOOGLE_SEARCH_URL_SUFFIX = "/data=!4m2!2m1!4b1?dg=dbrw&newdg=1";
+    private static final String GOOGLE_MAPS_URL_PREFIX = "https://www.google.com.sg/maps/search/";
+    private static final String GOOGLE_SEARCH_URL_SUFFIX = "/data=!4m2!2m1!4b1?dg=dbrw&newdg=1";
     private MapWindow mapWindow;
     private MapWindowHandle mapWindowHandle;
 
@@ -30,7 +32,7 @@ public class MapWindowTest extends GuiUnitTest {
     }
 
     @Test
-    public void display() throws Exception{
+    public void display() throws Exception {
         URL expectedHelpPage = new URL(GOOGLE_MAPS_URL_PREFIX
                 + ALICE.getAddress().getMapableAddress().trim().replaceAll(SPACE, PLUS) + GOOGLE_SEARCH_URL_SUFFIX);
         waitUntilMapBrowserLoaded(mapWindowHandle);

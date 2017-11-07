@@ -7,11 +7,11 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertInfoPanelDisplaysPer
 
 import org.junit.Test;
 
+import guitests.guihandles.PersonInfoPanelHandle;
+
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.testutil.PersonBuilder;
-
-import guitests.guihandles.PersonInfoPanelHandle;
 
 //@@author liliwei25
 public class PersonInfoPanelTest extends GuiUnitTest {

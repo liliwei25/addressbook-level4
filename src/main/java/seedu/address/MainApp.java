@@ -119,7 +119,7 @@ public class MainApp extends Application {
      * Initialize the tray icon for the app
      */
     private void initTrayIcon() {
-        Image image = new Image(TRAY_ICON, ICON_SIZE,ICON_SIZE, true, true);
+        Image image = new Image(TRAY_ICON, ICON_SIZE, ICON_SIZE, true, true);
         PopupMenu popup = new PopupMenu();
 
         setupTrayIcon(image, popup);

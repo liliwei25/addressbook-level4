@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -80,8 +79,8 @@ public class RemoveTagCommand extends UndoableCommand {
      * Removes selected {@code Tag} from person and updates address book
      *
      * @param person person selected
-     * @throws CommandException when selected Tag is not found
      * @return true when tag is found in person
+     * @throws CommandException when selected Tag is not found
      */
     private boolean removeAndUpdate(ReadOnlyPerson person) throws CommandException {
         if (person.getTags().contains(target)) {

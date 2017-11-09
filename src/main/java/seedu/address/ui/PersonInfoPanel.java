@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
@@ -30,7 +29,7 @@ public class PersonInfoPanel extends UiPart<Region> {
     private static final String EMPTY = "";
     private static final String DEFAULT = "profiles/default.png";
     private static final String DEFAULT_TEXT = "default";
-    public static final int RADIUS = 100;
+    private static final int RADIUS = 100;
     private final Logger logger = LogsCenter.getLogger(PersonInfoPanel.class);
     private final ReadOnlyPerson person;
     private final Circle circle = new Circle(RADIUS, RADIUS, RADIUS);

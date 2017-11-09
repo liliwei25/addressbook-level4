@@ -28,7 +28,6 @@ public class RemoveTagCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        // no input
         assertParseFailure(parser, INVALID_INPUT,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
     }

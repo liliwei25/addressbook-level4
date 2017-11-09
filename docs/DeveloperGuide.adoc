@@ -596,13 +596,14 @@ private void startTray() {
 The image mechanism is facilitated by the `ImageCommandParser` and `ImageCommand`, which resides within the `Logic` component,
 It adds/edits/removes the `ProfilePicture` of a `Person`.
 
-`ImageCommandParser` parses the `Index` provided by the user and passes it to a new `ImageCommand`. If `remove` is detected in the input,
-the `ProfilePicture` of the selected by the user will be deleted and reset to default.
+`ImageCommandParser` parses the `Index` provided by the user and passes it to a new `ImageCommand`. +
+If `remove` is detected in the input, the `ProfilePicture` of the selected by the user will be deleted and reset to default. +
+Else, a file browser pop-up to allow user to choose which picture they would like to choose as the `Person` 's `ProfilePicture`.
 
 Implementation of `ImageCommand`:
 [source, java]
 ----
-private ReadOnlyPerson updateDisplayPicture(List<ReadOnlyPerson> lastShownList, +
+private ReadOnlyPerson updateDisplayPicture(List<ReadOnlyPerson> lastShownList,
     ReadOnlyPerson personToEdit) throws PersonNotFoundException {
 
     ReadOnlyPerson editedPerson;
@@ -614,6 +615,15 @@ private ReadOnlyPerson updateDisplayPicture(List<ReadOnlyPerson> lastShownList, 
     return editedPerson;
 }
 ----
+==== Design Considerations
+
+**Aspect:** Implementation of method to choose file +
+**Alternative 1 (current choice):** Opens a FileChooser dialog to allow user to choose photo +
+**Pros:** Allows more freedom for the user +
+**Cons:** Requires more processing and more prone to errors +
+**Alternative 2:** Only allow user to input the file location in CLI +
+**Pros:** Reduces the complexity and reduces chances for errors +
+**Cons:** Very rigid. User will have a hard time finding the file path of the image.
 // end::Image[]
 
 // tag::BirthdayNotifier[]

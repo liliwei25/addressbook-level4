@@ -11,10 +11,11 @@ import seedu.address.model.tag.Tag;
 
 //@@author liliwei25
 public class RemoveTagCommandParserTest {
+    public static final String FIRST_INDEX = "1";
     private static final String VALID_INPUT = "test";
     private static final String VALID_FIRST_INPUT = "1 test";
     private static final String INVALID_INPUT = "";
-    public static final String FIRST_INDEX = "1";
+
     private RemoveTagCommandParser parser = new RemoveTagCommandParser();
 
     @Test

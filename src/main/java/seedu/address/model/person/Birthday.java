@@ -31,10 +31,11 @@ public class Birthday implements Comparable {
     private static final int MONTH_POS = 1;
     private static final String DATE_FORMAT = "dd-MM-yyyy";
 
-    public final String value;
-    private final int day;
-    private final int month;
-    private final int year;
+    public String value;
+    private int day;
+    private int month;
+    private int year;
+    private DateTimeFormatter formatter;
 
     /**
      * Validates given birthday.
@@ -45,29 +46,85 @@ public class Birthday implements Comparable {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
-        if (birthday.equals(EMPTY) || birthday.equals(NOT_SET) || birthday.equals(REMOVE)) {
-            this.value = NOT_SET;
-            day = month = year = DEFAULT_VALUE;
+        validateBirthday(trimmedBirthday);
+    }
+
+    /**
+     * Validates birthday and assign values
+     *
+     * @param birthday User input
+     * @throws IllegalValueException When user input is an invalid birthday
+     */
+    private void validateBirthday(String birthday) throws IllegalValueException {
+        if (isDefault(birthday)) {
+            setDefaultValues();
         } else {
-            LocalDate inputBirthday;
-            try {
-                inputBirthday = LocalDate.parse(birthday, formatter);
-            } catch (DateTimeParseException dtpe) {
-                throw new IllegalValueException(MESSAGE_WRONG_DATE);
-            }
-            if (!isValidBirthday(birthday.split(DASH), inputBirthday)) {
-                throw new IllegalValueException(MESSAGE_WRONG_DATE);
-            } else if (!isDateCorrect(inputBirthday)) {
-                throw new IllegalValueException(String.format(MESSAGE_LATE_DATE, LocalDate.now().format(formatter)));
-            } else {
-                this.value = trimmedBirthday;
-                this.day = inputBirthday.getDayOfMonth();
-                this.month = inputBirthday.getMonthValue();
-                this.year = inputBirthday.getYear();
-            }
+            verifyDateAndSetValues(birthday);
         }
+    }
+
+    /**
+     * User input to remove birthday of Person
+     *
+     * @param birthday User input
+     * @return True when user input is empty or "Not Set" or "remove"
+     */
+    private boolean isDefault(String birthday) {
+        return birthday.equals(EMPTY) || birthday.equals(NOT_SET) || birthday.equals(REMOVE);
+    }
+
+    /**
+     * Set values of Birthday to default values
+     */
+    private void setDefaultValues() {
+        value = NOT_SET;
+        day = month = year = DEFAULT_VALUE;
+    }
+
+    /**
+     * Creates a LocalDate object according to the user input
+     *
+     * @param birthday User input
+     * @return LocalDate of the user input
+     * @throws IllegalValueException If user input is in the wrong format
+     */
+    private LocalDate getBirthday(String birthday) throws IllegalValueException {
+        LocalDate inputBirthday;
+        try {
+            inputBirthday = LocalDate.parse(birthday, formatter);
+        } catch (DateTimeParseException dtpe) {
+            throw new IllegalValueException(MESSAGE_WRONG_DATE);
+        }
+        return inputBirthday;
+    }
+
+    /**
+     * Validates birthday and makes sure it is valid and correct
+     *
+     * @param birthday User input
+     * @throws IllegalValueException When birthday is not valid or not correct
+     */
+    private void verifyDateAndSetValues(String birthday) throws IllegalValueException {
+        LocalDate inputBirthday = getBirthday(birthday);
+        if (!isValidBirthday(birthday)) {
+            throw new IllegalValueException(MESSAGE_WRONG_DATE);
+        } else if (!isDateCorrect(inputBirthday)) {
+            throw new IllegalValueException(String.format(MESSAGE_LATE_DATE, LocalDate.now().format(formatter)));
+        } else {
+            setValues(birthday, inputBirthday);
+        }
+    }
+
+    /**
+     * Set values to Birthday
+     */
+    private void setValues(String birthday, LocalDate inputBirthday) {
+        this.value = birthday;
+        this.day = inputBirthday.getDayOfMonth();
+        this.month = inputBirthday.getMonthValue();
+        this.year = inputBirthday.getYear();
     }
 
     /**
@@ -105,7 +162,7 @@ public class Birthday implements Comparable {
      * @return True when {@code isValidBirthday} verifies date entered by user
      */
     public static boolean isValidBirthday(String test) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         String[] split = test.split(DASH);
         LocalDate testBirthday;
         try {

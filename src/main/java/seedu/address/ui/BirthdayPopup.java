@@ -1,10 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -23,7 +19,7 @@ public class BirthdayPopup {
     private static final int MIN_HEIGHT = 125;
     private static final int INCREMENT = 50;
     private static final String BIRTHDAY_ALERT = "Birthday Alert!";
-    private static final String ICON_LOCATION = "src/main/resources/images/birthday_cake.png";
+    private static final String ICON_LOCATION = "/images/birthday_cake.png";
     private static final String ICON_DESCRIPTION = "birthday icon";
     private static final String CLOSE_BUTTON = "x";
     private static final String BIRTHDAY_MESSAGE = "There are birthdays today: \n";
@@ -66,7 +62,7 @@ public class BirthdayPopup {
         constraints.insets = new Insets(5, 5, 5, 5);
         constraints.fill = GridBagConstraints.BOTH;
 
-        Icon headingIcon = new ImageIcon(ICON_LOCATION, ICON_DESCRIPTION);
+        Icon headingIcon = new ImageIcon(getClass().getResource(ICON_LOCATION), ICON_DESCRIPTION);
         JLabel headingLabel = new JLabel(BIRTHDAY_ALERT);
         headingLabel.setIcon(headingIcon);
         headingLabel.setOpaque(false);

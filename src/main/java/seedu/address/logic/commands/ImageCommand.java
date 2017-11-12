@@ -20,7 +20,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 /**
  * Command to add/edit/remove image of Person
  */
-public class ImageCommand extends UndoableCommand {
+public class ImageCommand extends Command {
     public static final String COMMAND_WORD = "image";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -42,7 +42,7 @@ public class ImageCommand extends UndoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand() throws CommandException {
+    public CommandResult execute() throws CommandException {
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

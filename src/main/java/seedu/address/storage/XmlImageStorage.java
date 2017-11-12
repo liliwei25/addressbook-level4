@@ -16,7 +16,6 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class XmlImageStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(XmlImageStorage.class);
     private static final String PNG = ".png";
 
     /**
@@ -28,25 +27,7 @@ public class XmlImageStorage {
         requireNonNull(image);
         requireNonNull(name);
 
-        File file = new File(name + PNG);
+        File file = new File(name.concat(PNG));
         Files.copy(image.toPath(), file.toPath(), REPLACE_EXISTING);
-    }
-
-    /**
-     * Deletes the selected image from folder
-     * @param image to delete
-     * @throws IOException when image deletion fails
-     */
-    public void removeImage(File image) throws IOException {
-        requireNonNull(image);
-
-        File[] files = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath())
-                .listFiles();
-
-        for (File file : files) {
-            if (file.getName().equals(image.getName())) {
-                file.delete();
-            }
-        }
     }
 }

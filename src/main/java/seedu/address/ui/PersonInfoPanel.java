@@ -150,8 +150,24 @@ public class PersonInfoPanel extends UiPart<Region> {
         if (loc.equals(DEFAULT_TEXT)) {
             image = new Image(DEFAULT);
         } else {
-            File img = new File(loc);
+            image = getImage(loc);
+        }
+        return image;
+    }
+
+    /**
+     * Get image from given location
+     *
+     * @param loc Given location
+     * @return Image at given location or default image if location is invalid
+     */
+    private Image getImage(String loc) {
+        Image image;
+        File img = new File(loc);
+        if(img.exists()) {
             image = new Image(img.toURI().toString());
+        } else {
+            image = new Image(DEFAULT);
         }
         return image;
     }

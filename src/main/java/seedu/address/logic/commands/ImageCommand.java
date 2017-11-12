@@ -30,6 +30,8 @@ public class ImageCommand extends Command {
 
     static final String MESSAGE_IMAGE_SUCCESS = "Changed Profile Picture: %1$s";
     static final String DEFAULT = "default";
+    private static final String MESSAGE_NO_IMAGE = "No image to remove";
+    public static final String MESSAGE_CANCELLED = "Cancelled";
 
     public final Index index;
     public final boolean remove;
@@ -47,9 +49,13 @@ public class ImageCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        String oldPicture = lastShownList.get(index.getZeroBased()).getPicture().getLocation();
+        ReadOnlyPerson editedPerson = updateAddressBook(lastShownList);
 
-        ReadOnlyPerson personToEdit = updateAddressBook(lastShownList);
-        return new CommandResult(String.format(MESSAGE_IMAGE_SUCCESS, personToEdit));
+        if (oldPicture.equals(editedPerson.getPicture().getLocation())) {
+            return new CommandResult(MESSAGE_CANCELLED);
+        }
+        return new CommandResult(String.format(MESSAGE_IMAGE_SUCCESS, editedPerson));
     }
 
     /**
@@ -65,13 +71,14 @@ public class ImageCommand extends Command {
         try {
             editedPerson = updateDisplayPicture(lastShownList, personToEdit);
             model.updatePerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateListToShowAll();
+            return editedPerson;
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } catch (PersonNotFoundException pnfe) {
             assert false : MESSAGE_MISSING_PERSON;
         }
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateListToShowAll();
         return personToEdit;
     }
 
@@ -84,7 +91,7 @@ public class ImageCommand extends Command {
      * @throws PersonNotFoundException When selected person is not found in address book
      */
     private ReadOnlyPerson updateDisplayPicture(List<ReadOnlyPerson> lastShownList, ReadOnlyPerson personToEdit)
-            throws PersonNotFoundException {
+            throws PersonNotFoundException, CommandException {
         ReadOnlyPerson editedPerson;
         if (remove) {
             editedPerson = removeDisplayPicture(personToEdit);
@@ -103,10 +110,12 @@ public class ImageCommand extends Command {
      * @throws PersonNotFoundException When selected person is not found in address book
      */
     private ReadOnlyPerson selectDisplayPicture(List<ReadOnlyPerson> lastShownList, ReadOnlyPerson personToEdit)
-            throws PersonNotFoundException {
-        ReadOnlyPerson editedPerson;
+            throws PersonNotFoundException, CommandException {
+        ReadOnlyPerson editedPerson = lastShownList.get(index.getZeroBased());
+        if (!editedPerson.getPicture().getLocation().equals(DEFAULT)) {
+            removeDisplayPicture(personToEdit);
+        }
         model.changeImage(personToEdit);
-        editedPerson = lastShownList.get(index.getZeroBased());
         return editedPerson;
     }
 
@@ -116,7 +125,11 @@ public class ImageCommand extends Command {
      * @param personToEdit Selected {@code Person} to edit
      * @return {@code Person} with default profile picture
      */
-    private Person removeDisplayPicture(ReadOnlyPerson personToEdit) {
+    private Person removeDisplayPicture(ReadOnlyPerson personToEdit) throws PersonNotFoundException, CommandException {
+        if (personToEdit.getPicture().getLocation().equals(DEFAULT)) {
+            throw new CommandException(MESSAGE_NO_IMAGE);
+        }
+        model.removeImage(personToEdit);
         return new Person(personToEdit.getName(), personToEdit.getPhone(),
                             personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getRemark(),
                             personToEdit.getBirthday(), personToEdit.getTags(), new ProfilePicture(DEFAULT),

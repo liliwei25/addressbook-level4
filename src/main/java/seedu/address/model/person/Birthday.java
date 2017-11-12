@@ -206,13 +206,10 @@ public class Birthday implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        Birthday comparedBirthday = (Birthday) o;
-        if (this.value.equals(NOT_SET)) {
-            return INDEX_ONE;
-        }
-        return this.year * SCALE_YEAR + this.month * SCALE_MONTH + this.day
-                - (comparedBirthday.getYear() * SCALE_YEAR + comparedBirthday.getMonth() * SCALE_MONTH
-                        + comparedBirthday.getDay());
+    public int compareTo(Object other) {
+        Birthday comparedBirthday = (Birthday) other;
+
+        return (comparedBirthday.getYear() * SCALE_YEAR + comparedBirthday.getMonth() * SCALE_MONTH
+                + comparedBirthday.getDay()) - this.year * SCALE_YEAR + this.month * SCALE_MONTH + this.day;
     }
 }

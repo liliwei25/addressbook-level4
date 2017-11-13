@@ -38,6 +38,7 @@ public class XmlImageStorage {
 
         File filePath = new File(PARENT_DIR);
         createDirs(filePath);
+        // Create picture file to include time in case there are multiple Person with same name
         File newImage = new File(PARENT_DIR.concat(name).concat(UNDERSCORE)
                 .concat(Long.toString(LocalDateTime.now().toEpochSecond(ZoneOffset.MAX))).concat(PNG));
         Files.copy(image.toPath(), newImage.toPath(), REPLACE_EXISTING);

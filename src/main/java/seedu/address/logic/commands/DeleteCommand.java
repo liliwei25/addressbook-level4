@@ -53,9 +53,7 @@ public class DeleteCommand extends UndoableCommand {
         StringJoiner deletedNames = new StringJoiner(COMMA);
         StringJoiner failedIndexs = new StringJoiner(COMMA);
 
-        List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
-
-        deletePersons(deletedNames, failedIndexs, lastShownList);
+        deletePersons(deletedNames, failedIndexs);
         return getResult(deletedNames, failedIndexs);
     }
 
@@ -64,9 +62,9 @@ public class DeleteCommand extends UndoableCommand {
      *
      * @param deletedNames Stores names of successfully deleted Persons
      * @param failedIndexs Stores invalid indexes
-     * @param lastShownList List of Persons in address book
      */
-    private void deletePersons(StringJoiner deletedNames, StringJoiner failedIndexs, List<ReadOnlyPerson> lastShownList) {
+    private void deletePersons(StringJoiner deletedNames, StringJoiner failedIndexs) {
+        List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
         for (int i = targets.length - 1; i >= 0; i--) {
             if (targets[i].getZeroBased() >= lastShownList.size()) {
                 failedIndexs.add(Integer.toString(targets[i].getOneBased()));
@@ -84,7 +82,7 @@ public class DeleteCommand extends UndoableCommand {
      * @param failedIndexs Indexes of failed/invalid deletes
      * @return result string with names and indexes
      */
-    private String getResult(StringJoiner deletedNames, StringJoiner failedIndexs) throws CommandException{
+    private String getResult(StringJoiner deletedNames, StringJoiner failedIndexs) throws CommandException {
         if (isEmpty(deletedNames)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

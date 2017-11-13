@@ -89,16 +89,6 @@ public class PersonInfoPanel extends UiPart<Region> {
     }
 
     /**
-     * Determines if Person selected is valid
-     *
-     * @param person Selected Person
-     * @return True if selected person is null
-     */
-    private boolean noPersonSelected(ReadOnlyPerson person) {
-        return person == null;
-    }
-
-    /**
      * Display selected Person's details on PersonInfoPanel
      */
     private void setConnections(String name, String phone, String address, String email, String birthday,
@@ -114,6 +104,16 @@ public class PersonInfoPanel extends UiPart<Region> {
             setTags(tags);
         }
         setImage(loc);
+    }
+
+    /**
+     * Determines if Person selected is valid
+     *
+     * @param person Selected Person
+     * @return True if selected person is null
+     */
+    private boolean noPersonSelected(ReadOnlyPerson person) {
+        return person == null;
     }
 
     /**
@@ -164,7 +164,7 @@ public class PersonInfoPanel extends UiPart<Region> {
     private Image getImage(String loc) {
         Image image;
         File img = new File(loc);
-        if(img.exists()) {
+        if (img.exists()) {
             image = new Image(img.toURI().toString());
         } else {
             image = new Image(DEFAULT);

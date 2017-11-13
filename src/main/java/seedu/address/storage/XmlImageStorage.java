@@ -2,19 +2,14 @@ package seedu.address.storage;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static java.util.Objects.requireNonNull;
+
 import static seedu.address.commons.util.FileUtil.createDirs;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-
-import com.google.common.eventbus.Subscribe;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.RemoveImageEvent;
 
 //@@author liliwei25
 /**
@@ -29,8 +24,8 @@ public class XmlImageStorage {
     /**
      * Save selected image to image folder
      *
-     * @throws IOException when image copy fails
      * @return The file path of the saved image
+     * @throws IOException when image copy fails
      */
     public String saveImage(File image, String name) throws IOException {
         requireNonNull(image);

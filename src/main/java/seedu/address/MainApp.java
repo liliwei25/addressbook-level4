@@ -102,7 +102,9 @@ public class MainApp extends Application {
      */
     private void startTray() {
         Platform.setImplicitExit(false);
-        if (isNotSupported()) return;
+        if (isNotSupported()) {
+            return;
+        }
         initTrayIcon();
         addTrayIcon();
     }

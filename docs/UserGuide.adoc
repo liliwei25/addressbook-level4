@@ -582,3 +582,15 @@ e.g.`select 2`
 * *Sort* `sort name` + `sort number` + `sort address` + `sort email` + `sort remark` + `sort birthday` + `sort favourite`
 * *Undo* : `undo (Optional:NUMBER)`
 e.g. `Undo 2`
+
+== Coming in V2.0
+
+=== New Functions
+* Toggle between light and dark themes
+* `Person` will be created with `Date Created` and `Date last edited` fields
+* Confirmation when `Clear` is used
+* Function to create backup copies of PocketBook
+* Import contacts from social media sites such as Facebook, Twitter etc.
+* Group function to group contacts
+* Calender to plan events
+* Tutorial function

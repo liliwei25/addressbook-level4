@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.AddCommandParser.INDEX_ONE;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,8 +19,8 @@ public class Birthday implements Comparable {
             "Birthdays can only contain numbers, and should be in the format dd-mm-yyyy";
     public static final String MESSAGE_WRONG_DATE = "Date entered is wrong";
     public static final String MESSAGE_LATE_DATE = "Date given should be before today %1$s";
-    public static final int SCALE_YEAR = 10000;
-    public static final int SCALE_MONTH = 100;
+    private static final int SCALE_YEAR = 10000;
+    private static final int SCALE_MONTH = 100;
     private static final String DASH = "-";
     private static final int DEFAULT_VALUE = 0;
     private static final String NOT_SET = "Not Set";
@@ -34,7 +33,7 @@ public class Birthday implements Comparable {
     private static final int MONTH_POS = 1;
     private static final String DATE_FORMAT = "dd-MM-yyyy";
 
-    public String value;
+    public final String value;
     private int day;
     private int month;
     private int year;
@@ -49,6 +48,11 @@ public class Birthday implements Comparable {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
 
+        if (isDefault(trimmedBirthday)) {
+            value = NOT_SET;
+        } else {
+            value = trimmedBirthday;
+        }
         formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         validateBirthday(trimmedBirthday);
@@ -82,7 +86,6 @@ public class Birthday implements Comparable {
      * Set values of Birthday to default values
      */
     private void setDefaultValues() {
-        value = NOT_SET;
         day = month = year = DEFAULT_VALUE;
     }
 
@@ -116,15 +119,14 @@ public class Birthday implements Comparable {
         } else if (!isDateCorrect(inputBirthday)) {
             throw new IllegalValueException(String.format(MESSAGE_LATE_DATE, LocalDate.now().format(formatter)));
         } else {
-            setValues(birthday, inputBirthday);
+            setValues(inputBirthday);
         }
     }
 
     /**
      * Set values to Birthday
      */
-    private void setValues(String birthday, LocalDate inputBirthday) {
-        this.value = birthday;
+    private void setValues(LocalDate inputBirthday) {
         this.day = inputBirthday.getDayOfMonth();
         this.month = inputBirthday.getMonthValue();
         this.year = inputBirthday.getYear();

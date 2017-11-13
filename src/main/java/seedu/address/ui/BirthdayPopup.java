@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;

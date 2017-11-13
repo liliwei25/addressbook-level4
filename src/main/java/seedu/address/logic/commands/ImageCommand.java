@@ -28,10 +28,10 @@ public class ImageCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    static final String MESSAGE_IMAGE_SUCCESS = "Changed Profile Picture: %1$s";
-    static final String DEFAULT = "default";
-    private static final String MESSAGE_NO_IMAGE = "No image to remove";
+    public static final String MESSAGE_IMAGE_SUCCESS = "Changed Profile Picture: %1$s";
+    public static final String DEFAULT = "default";
     public static final String MESSAGE_CANCELLED = "Cancelled";
+    private static final String MESSAGE_NO_IMAGE = "No image to remove";
 
     public final Index index;
     public final boolean remove;

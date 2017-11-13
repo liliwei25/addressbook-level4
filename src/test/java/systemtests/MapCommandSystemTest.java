@@ -3,15 +3,17 @@ package systemtests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
 import guitests.guihandles.MapWindowHandle;
-import org.junit.Test;
+
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.ui.MapWindow;
 
 //@@author liliwei25
-public class MapCommandSystemTest extends AddressBookSystemTest{
+public class MapCommandSystemTest extends AddressBookSystemTest {
     public static final String VALID_INDEX = " 1";
     public static final String INVALID_INDEX = " 0";
     private final GuiRobot guiRobot = new GuiRobot();

@@ -31,14 +31,13 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ProfilePicture;
 import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.ModelStub;
 
 //@@author liliwei25
 public class ImageCommandTest {
     private static final boolean REMOVE = true;
-    public static final String TEST_IMAGE = "test.png";
+    private static final String TEST_IMAGE = "test.png";
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
